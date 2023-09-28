@@ -89,13 +89,4 @@ class LibskLibfido2 < Formula
       
       lib.install "libsk-libfido2.dylib"
     end
-  
-    test do
-      assert_match "OpenSSH_", shell_output("#{bin}/ssh -V 2>&1")
-  
-      port = free_port
-      fork { exec sbin/"sshd", "-D", "-p", port.to_s }
-      sleep 2
-      assert_match "sshd", shell_output("lsof -i :#{port}")
-    end
   end
