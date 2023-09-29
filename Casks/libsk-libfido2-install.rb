@@ -13,7 +13,6 @@ cask "libsk-libfido2-install" do
     system_command "/bin/zsh", args: ["#{staged_path}/install-libsk-libfido2.zsh"], sudo: true
   end
 
-
   uninstall_postflight do
     system_command "/bin/zsh", args: ["-c", "rm /usr/local/lib/libsk-libfido2.dylib"], sudo: true
   end
