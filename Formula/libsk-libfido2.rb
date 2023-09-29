@@ -5,7 +5,7 @@ class LibskLibfido2 < Formula
   mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
   version "9.4p1"
   sha256 "3608fd9088db2163ceb3e600c85ab79d0de3d221e59192ea1923e23263866a85"
-  revision 1
+  revision 2
   license "SSH-OpenSSH"
 
   livecheck do
@@ -46,8 +46,8 @@ class LibskLibfido2 < Formula
   end
 
   resource "install-libsk-libfido2.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2.zsh"
-    sha256 "197336326218ff94a31b09a5fd0057f01380b09ef41d1fd2149ef9959e8fe015"
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v2.zsh"
+    sha256 "4e8f6fd998b02064395acf7fe01adff4f5891926903cff0d049a95cd07c6434b"
   end
 
   def install
