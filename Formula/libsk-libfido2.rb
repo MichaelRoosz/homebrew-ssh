@@ -4,7 +4,7 @@ class LibskLibfido2 < Formula
   url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
   mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
   version "9.4p1"
-  revision 3
+  revision 4
   sha256 "3608fd9088db2163ceb3e600c85ab79d0de3d221e59192ea1923e23263866a85"
   license "SSH-OpenSSH"
 
@@ -95,8 +95,8 @@ class LibskLibfido2 < Formula
 
     libexec.install "libsk-libfido2.dylib"
 
-    resource("install-libsk-libfido2.zsh").stage do
-      bin.install "install-libsk-libfido2.zsh" => "install-libsk-libfido2"
+    resource("install-libsk-libfido2-v2.zsh").stage do
+      bin.install "install-libsk-libfido2-v2.zsh" => "install-libsk-libfido2"
     end
   end
 
