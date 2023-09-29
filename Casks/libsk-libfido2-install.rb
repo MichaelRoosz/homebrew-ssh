@@ -3,8 +3,8 @@ cask "libsk-libfido2-install" do
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
   version "9.4p1"
   
-  url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2.zsh"
-  sha256 "197336326218ff94a31b09a5fd0057f01380b09ef41d1fd2149ef9959e8fe015"
+  url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v2.zsh"
+  sha256 "4e8f6fd998b02064395acf7fe01adff4f5891926903cff0d049a95cd07c6434b"
   
   depends_on arch: [:intel, :arm64]
   depends_on formula: "michaelroosz/ssh/libsk-libfido2"
