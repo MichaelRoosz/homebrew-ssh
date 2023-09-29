@@ -2,7 +2,6 @@ cask "libsk-libfido2-install" do
   desc "libsk-libfido2 for MacOS Yubikey support for SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
   version "9.4p1"
-  license "SSH-OpenSSH"
 
   livecheck do
     url "https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/"
