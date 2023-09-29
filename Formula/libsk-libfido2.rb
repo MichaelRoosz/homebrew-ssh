@@ -4,8 +4,8 @@ class LibskLibfido2 < Formula
   url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
   mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
   version "9.4p1"
+  revision 3
   sha256 "3608fd9088db2163ceb3e600c85ab79d0de3d221e59192ea1923e23263866a85"
-  revision 2
   license "SSH-OpenSSH"
 
   livecheck do
@@ -93,7 +93,7 @@ class LibskLibfido2 < Formula
 
     ENV.deparallelize
 
-    lib.install "libsk-libfido2.dylib"
+    libexec.install "libsk-libfido2.dylib"
 
     resource("install-libsk-libfido2.zsh").stage do
       bin.install "install-libsk-libfido2.zsh" => "install-libsk-libfido2"
@@ -104,7 +104,7 @@ class LibskLibfido2 < Formula
     <<~EOF
       !!!
 
-      IMPORTANT: To be able to use ssh-agent and ssh-add run this sudo command:
+      IMPORTANT: To fiinish installation run this sudo command:
         sudo install-libsk-libfido2
 
       OR install this homwbrew cask:
