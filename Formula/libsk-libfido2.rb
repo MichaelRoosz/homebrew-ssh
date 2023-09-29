@@ -110,6 +110,9 @@ class LibskLibfido2 < Formula
       OR install this homwbrew cask:
         brew install michaelroosz/ssh/libsk-libfido2-install
       !!!
+
+      Set this environemnt variable before running ssh or ssh-add:
+        SSH_SK_PROVIDER=/usr/local/lib/libsk-libfido2.dylib
     EOF
   end
 end
