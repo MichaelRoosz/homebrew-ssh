@@ -32,4 +32,7 @@ cask "libsk-libfido2-install" do
       FileUtils.cp(arm_lib_path, lib_path)
     end
   end
+
+  installer manual: "echo 'This cask modifies system files. No additional installation steps required.'"
+  
 end
