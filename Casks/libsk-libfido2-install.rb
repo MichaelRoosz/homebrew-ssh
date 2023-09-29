@@ -16,4 +16,12 @@ cask "libsk-libfido2-install" do
   uninstall_postflight do
     system_command "/bin/zsh", args: ["-c", "rm /usr/local/lib/libsk-libfido2.dylib"], sudo: true
   end
+
+  def caveats
+    <<~EOF
+      Set this environemnt variable before running ssh or ssh-add:
+        SSH_SK_PROVIDER=/usr/local/lib/libsk-libfido2.dylib
+    EOF
+  end
+
 end
