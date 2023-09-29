@@ -10,7 +10,7 @@ cask "libsk-libfido2-install" do
   depends_on formula: "michaelroosz/ssh/libsk-libfido2"
 
   postflight do
-    system_command "/bin/zsh", args: ["#{staged_path}/install-libsk-libfido2.zsh"], sudo: true
+    system_command "/bin/zsh", args: ["#{staged_path}/install-libsk-libfido2-v2.zsh"], sudo: true
   end
 
   uninstall_postflight do
