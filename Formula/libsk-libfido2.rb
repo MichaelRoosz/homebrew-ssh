@@ -104,7 +104,7 @@ class LibskLibfido2 < Formula
     <<~EOF
       !!!
 
-      IMPORTANT: To fiinish installation run this sudo command:
+      IMPORTANT: To finish installation run this sudo command:
         sudo install-libsk-libfido2
 
       OR install this homwbrew cask:
