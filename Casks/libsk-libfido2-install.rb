@@ -3,13 +3,6 @@ cask "libsk-libfido2-install" do
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
   version "9.4p1"
 
-  livecheck do
-    url "https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/"
-    regex(/href=.*?openssh[._-]v?(\d+(?:\.\d+)+(?:p\d+)?)\.t/i)
-  end
-
-  auto_updates true
-
   depends_on arch: [:intel, :arm64]
   depends_on formula: "libsk-libfido2"
 
