@@ -12,8 +12,13 @@ elif [[ "$(uname -m)" == "arm64" ]]; then
     arm_lib_path="/opt/homebrew/lib/libsk-libfido2.dylib"
     if [[ -L $arm_lib_path ]]; then
         target=$(readlink $arm_lib_path)
-        rm $arm_lib_path
-        cp $target $arm_lib_path
     fi
-    cp $arm_lib_path $lib_path
+    
+    mkdir -p /usr/local/lib
+    
+    if [[ -f $lib_path || -L $lib_path ]]; then
+        rm $lib_path
+    fi
+
+    cp $target $lib_path
 fi
