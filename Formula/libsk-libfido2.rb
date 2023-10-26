@@ -1,11 +1,11 @@
 class LibskLibfido2 < Formula
   desc "libsk-libfido2 for MacOS Yubikey support for SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
-  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
-  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.4p1.tar.gz"
-  version "9.4p1"
-  revision 5
-  sha256 "3608fd9088db2163ceb3e600c85ab79d0de3d221e59192ea1923e23263866a85"
+  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.5p1.tar.gz"
+  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.5p1.tar.gz"
+  version "9.5p1"
+  revision 1
+  sha256 "f026e7b79ba7fb540f75182af96dc8a8f1db395f922bbc9f6ca603672686086b"
   license "SSH-OpenSSH"
 
   livecheck do
@@ -17,6 +17,7 @@ class LibskLibfido2 < Formula
   depends_on "ldns"
   depends_on "libfido2"
   depends_on "openssl@3"
+  depends_on "theseal/ssh-askpass/ssh-askpass"
 
   uses_from_macos "lsof" => :test
   uses_from_macos "krb5"
@@ -47,7 +48,7 @@ class LibskLibfido2 < Formula
 
   resource "install-libsk-libfido2.zsh" do
     url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2.zsh"
-    sha256 "4e8f6fd998b02064395acf7fe01adff4f5891926903cff0d049a95cd07c6434b"
+    sha256 "be33292d1fe9a9d1c2c000eab900be4962214ba3f59144e5daac29d6ad8a1453"
   end
 
   def install
@@ -109,10 +110,8 @@ class LibskLibfido2 < Formula
 
       OR install this homwbrew cask:
         brew install michaelroosz/ssh/libsk-libfido2-install
-      !!!
 
-      Set this environemnt variable before running ssh or ssh-add:
-        SSH_SK_PROVIDER=/usr/local/lib/libsk-libfido2.dylib
+      !!!
     EOF
   end
 end
