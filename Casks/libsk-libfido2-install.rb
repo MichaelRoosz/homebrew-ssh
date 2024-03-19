@@ -1,17 +1,17 @@
 cask "libsk-libfido2-install" do
   desc "libsk-libfido2 for MacOS Yubikey support for SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
-  version "9.5p1_build2"
+  version "9.5p1_build3"
   
-  url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.1.zsh"
-  sha256 "cc0d2c4df5c62c498924e0128cd47aaedc3e8ded12cc38f95275f09c16a5b636"
+  url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.2.zsh"
+  sha256 "4cfb4931444a06484b67567e8c3d363c53b7647d728327bfbcdd30d23a64eac9"
   
   depends_on arch: [:intel, :arm64]
   depends_on formula: "michaelroosz/ssh/libsk-libfido2"
   depends_on formula: "theseal/ssh-askpass/ssh-askpass"
 
   postflight do
-    system_command "/bin/zsh", args: ["#{staged_path}/install-libsk-libfido2-v1.1.1.zsh"], sudo: true
+    system_command "/bin/zsh", args: ["#{staged_path}/install-libsk-libfido2-v1.1.2.zsh"], sudo: true
     system_command "/bin/zsh", args: ["-c", "/bin/launchctl load /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist"], sudo: false
   end
 
