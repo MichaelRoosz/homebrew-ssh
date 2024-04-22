@@ -16,9 +16,9 @@ cask "libsk-libfido2-install" do
   end
 
   uninstall_postflight do
-    system_command "/bin/zsh", args: ["-c", "rm /usr/local/lib/libsk-libfido2.dylib"], sudo: true
-    system_command "/bin/zsh", args: ["-c", "/bin/launchctl unload /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist"], sudo: false
-    system_command "/bin/zsh", args: ["-c", "rm /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist"], sudo: true
+    system_command "/bin/zsh", args: ["-c", "rm /usr/local/lib/libsk-libfido2.dylib || true"], sudo: true
+    system_command "/bin/zsh", args: ["-c", "/bin/launchctl unload /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist || true"], sudo: false
+    system_command "/bin/zsh", args: ["-c", "rm /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist || true"], sudo: true
   end
 
 end
