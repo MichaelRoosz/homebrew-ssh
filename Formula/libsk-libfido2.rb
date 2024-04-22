@@ -1,11 +1,11 @@
 class LibskLibfido2 < Formula
   desc "libsk-libfido2 for MacOS Yubikey support for SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
-  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.5p1.tar.gz"
-  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.5p1.tar.gz"
-  version "9.5p1"
-  revision 2
-  sha256 "f026e7b79ba7fb540f75182af96dc8a8f1db395f922bbc9f6ca603672686086b"
+  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz"
+  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz"
+  version "9.7p1"
+  revision 1
+  sha256 "490426f766d82a2763fcacd8d83ea3d70798750c7bd2aff2e57dc5660f773ffd"
   license "SSH-OpenSSH"
 
   livecheck do
@@ -46,9 +46,9 @@ class LibskLibfido2 < Formula
     end
   end
 
-  resource "install-libsk-libfido2-v1.1.1.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.1.zsh"
-    sha256 "cc0d2c4df5c62c498924e0128cd47aaedc3e8ded12cc38f95275f09c16a5b636"
+  resource "install-libsk-libfido2-v1.1.2.zsh" do
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.2.zsh"
+    sha256 "4cfb4931444a06484b67567e8c3d363c53b7647d728327bfbcdd30d23a64eac9"
   end
 
   def install
@@ -96,8 +96,8 @@ class LibskLibfido2 < Formula
 
     libexec.install "libsk-libfido2.dylib"
 
-    resource("install-libsk-libfido2-v1.1.1.zsh").stage do
-      bin.install "install-libsk-libfido2-v1.1.1.zsh" => "install-libsk-libfido2"
+    resource("install-libsk-libfido2-v1.1.2.zsh").stage do
+      bin.install "install-libsk-libfido2-v1.1.2.zsh" => "install-libsk-libfido2"
     end
   end
 
