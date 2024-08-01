@@ -1,7 +1,7 @@
 cask "libsk-libfido2-install" do
   desc "libsk-libfido2 for MacOS Yubikey support for SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
-  version "9.5p1_build5"
+  version "9.5p1_build6"
   
   url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.3.zsh"
   sha256 "cc96f5a3f68d3adcb7ebea1bc4868f44982c840596bfbb69d3130ccf28c564ed"
