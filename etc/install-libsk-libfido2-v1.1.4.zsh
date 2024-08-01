@@ -41,7 +41,7 @@ cat <<EOF | tee /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist
 	<array>
 		<string>/bin/zsh</string>
 		<string>-c</string>
-		<string>/bin/launchctl setenv SSH_ASKPASS ${homebrew_prefix}/bin/ssh-askpass; /bin/launchctl setenv SSH_SK_PROVIDER /usr/local/lib/libsk-libfido2.dylib; killall ssh-agent; /bin/ln -sf \$SSH_AUTH_SOCK_LOCAL \$SSH_AUTH_SOCK; SSH_AUTH_SOCK=\$SSH_AUTH_SOCK_LOCAL /usr/bin/ssh-agent -l</string>
+		<string>/bin/launchctl setenv SSH_ASKPASS ${homebrew_prefix}/bin/ssh-askpass; /bin/launchctl setenv SSH_SK_PROVIDER /usr/local/lib/libsk-libfido2.dylib; killall ssh-agent; /bin/ln -sf $SSH_AUTH_SOCK_LOCAL $SSH_AUTH_SOCK; SSH_AUTH_SOCK=$SSH_AUTH_SOCK_LOCAL /usr/bin/ssh-agent -l</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
