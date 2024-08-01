@@ -46,9 +46,9 @@ class LibskLibfido2 < Formula
     end
   end
 
-  resource "install-libsk-libfido2-v1.1.4.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.4.zsh"
-    sha256 "8baaea786500f65bdf8f1641f467b812697b18dd0a6f6c48e7b97301e77b9dd8"
+  resource "install-libsk-libfido2-v1.1.5.zsh" do
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.5.zsh"
+    sha256 "cfe0804f1a9baff987c5b3ea5c5a53dd253e485531855e70b92f2e93493eb400"
   end
 
   def install
@@ -96,8 +96,8 @@ class LibskLibfido2 < Formula
 
     libexec.install "libsk-libfido2.dylib"
 
-    resource("install-libsk-libfido2-v1.1.4.zsh").stage do
-      bin.install "install-libsk-libfido2-v1.1.4.zsh" => "install-libsk-libfido2"
+    resource("install-libsk-libfido2-v1.1.5.zsh").stage do
+      bin.install "install-libsk-libfido2-v1.1.5.zsh" => "install-libsk-libfido2"
     end
   end
 
