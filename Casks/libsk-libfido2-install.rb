@@ -7,7 +7,7 @@ cask "libsk-libfido2-install" do
   sha256 "cfe0804f1a9baff987c5b3ea5c5a53dd253e485531855e70b92f2e93493eb400"
   
   depends_on arch: [:intel, :arm64]
-  depends_on formula: "libfido2"
+  depends_on formula: "michaelroosz/ssh/libsk-libfido2"
   depends_on formula: "theseal/ssh-askpass/ssh-askpass"
 
   postflight do
