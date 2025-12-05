@@ -5,7 +5,7 @@ class LibskLibfido2 < Formula
   mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.2p1.tar.gz"
   version "10.2p1"
   sha256 "ccc42c0419937959263fa1dbd16dafc18c56b984c03562d2937ce56a60f798b2"
-  revision 2
+  revision 3
   license "SSH-OpenSSH"
 
   livecheck do
@@ -72,7 +72,7 @@ class LibskLibfido2 < Formula
       export "$(cat Makefile | grep -m1 'CC=')" && \
       export "$(cat Makefile | grep -m1 'LDFLAGS=')" && \
       export "$(cat Makefile | grep -m1 'LIBFIDO2=')" && \
-      echo $LIBFIDO2 | xargs ${CC} -shared openbsd-compat/libopenbsd-compat.a sk-usbhid.o libssh.a -O2 -fPIC -o libsk-libfido2.dylib -Wl,-dead_strip,-exported_symbol,_sk_\*
+      echo $LIBFIDO2 | xargs ${CC} $LDFLAGS -shared openbsd-compat/libopenbsd-compat.a sk-usbhid.o libssh.a -O2 -fPIC -lcrypto -o libsk-libfido2.dylib -Wl,-dead_strip,-exported_symbol,_sk_\*
     EOS
 
     ENV.deparallelize
