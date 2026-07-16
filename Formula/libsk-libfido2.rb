@@ -1,18 +1,19 @@
 class LibskLibfido2 < Formula
   desc "libsk-libfido2 for MacOS Yubikey support for SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
-  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.3p1.tar.gz"
-  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.3p1.tar.gz"
-  version "10.3p1"
-  sha256 "56682a36bb92dcf4b4f016fd8ec8e74059b79a8de25c15d670d731e7d18e45f4"
-  revision 3
+  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.4p1.tar.gz"
+  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.4p1.tar.gz"
+  version "10.4p1"
+  sha256 "ef6026dd2aea8d56059638d5d3262902c892ceba9f88395835e0d06d3fb63238"
+  revision 1
   license "SSH-OpenSSH"
+  compatibility_version 1
 
   livecheck do
     url "https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/"
     regex(/href=.*?openssh[._-]v?(\d+(?:\.\d+)+(?:p\d+)?)\.t/i)
   end
-  
+
   depends_on "pkgconf" => :build
   depends_on "ldns"
   depends_on "libfido2"
@@ -24,10 +25,10 @@ class LibskLibfido2 < Formula
   uses_from_macos "krb5"
   uses_from_macos "libedit"
   uses_from_macos "libxcrypt"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "linux-pam"
+    depends_on "zlib-ng-compat"
   end
 
   resource "install-libsk-libfido2-v1.1.5.zsh" do
@@ -44,7 +45,7 @@ class LibskLibfido2 < Formula
       --with-libedit
       --with-kerberos5
       --with-pam
-      --with-ssl-dir=#{Formula["openssl@3"].opt_prefix}
+      --with-ssl-dir=#{formula_opt_prefix("openssl@3")}
       --with-security-key-builtin
     ]
 
