@@ -31,9 +31,9 @@ class LibskLibfido2 < Formula
     depends_on "zlib-ng-compat"
   end
 
-  resource "install-libsk-libfido2-v1.1.5.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.5.zsh"
-    sha256 "cfe0804f1a9baff987c5b3ea5c5a53dd253e485531855e70b92f2e93493eb400"
+  resource "install-libsk-libfido2-v1.1.6.zsh" do
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.6.zsh"
+    sha256 "dc6159e31b70007065ce8abebf33eab6ff9b76a375b7464e8d8f3cd966b04be5"
   end
 
   def install
@@ -68,8 +68,8 @@ class LibskLibfido2 < Formula
 
     libexec.install "libsk-libfido2.dylib"
 
-    resource("install-libsk-libfido2-v1.1.5.zsh").stage do
-      bin.install "install-libsk-libfido2-v1.1.5.zsh" => "install-libsk-libfido2"
+    resource("install-libsk-libfido2-v1.1.6.zsh").stage do
+      bin.install "install-libsk-libfido2-v1.1.6.zsh" => "install-libsk-libfido2"
     end
   end
 
