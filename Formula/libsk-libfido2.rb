@@ -1,12 +1,12 @@
 class LibskLibfido2 < Formula
-  desc "libsk-libfido2 for MacOS Yubikey support for SSH"
+  desc "Security key provider library for FIDO2 SSH authentication"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
   url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.5p1.tar.gz"
   mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.5p1.tar.gz"
   version "10.5p1"
   sha256 "d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11"
-  revision 2
   license "SSH-OpenSSH"
+  revision 2
   compatibility_version 1
 
   livecheck do
@@ -57,11 +57,11 @@ class LibskLibfido2 < Formula
     system "make openbsd-compat/libopenbsd-compat.a CFLAGS=\"-O2 -fPIC\""
     system "make sk-usbhid.o CFLAGS=\"-O2 -DSK_STANDALONE -fPIC\""
 
-    system <<-EOS \
+    system <<-EOS
       export "$(cat Makefile | grep -m1 'CC=')" && \
       export "$(cat Makefile | grep -m1 'LDFLAGS=')" && \
       export "$(cat Makefile | grep -m1 'LIBFIDO2=')" && \
-      echo $LIBFIDO2 | xargs ${CC} $LDFLAGS -shared openbsd-compat/libopenbsd-compat.a sk-usbhid.o libssh.a -O2 -fPIC -lcrypto -o libsk-libfido2.dylib -Wl,-dead_strip,-exported_symbol,_sk_\*
+      echo $LIBFIDO2 | xargs ${CC} $LDFLAGS -shared openbsd-compat/libopenbsd-compat.a sk-usbhid.o libssh.a -O2 -fPIC -lcrypto -o libsk-libfido2.dylib -Wl,-dead_strip,-exported_symbol,_sk_*
     EOS
 
     ENV.deparallelize
