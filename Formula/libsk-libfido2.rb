@@ -17,8 +17,11 @@ class LibskLibfido2 < Formula
   depends_on "pkgconf" => :build
   depends_on "ldns"
   depends_on "libfido2"
+  # The build emits a Mach-O .dylib and the installer script uses launchctl,
+  # dscl and /Library/LaunchAgents, so this is macOS-only.
+  depends_on :macos
+  depends_on "michaelroosz/ssh/ssh-askpass"
   depends_on "openssl@3"
-  depends_on "theseal/ssh-askpass/ssh-askpass"
 
   uses_from_macos "mandoc" => :build
   uses_from_macos "lsof" => :test
@@ -26,13 +29,8 @@ class LibskLibfido2 < Formula
   uses_from_macos "libedit"
   uses_from_macos "libxcrypt"
 
-  on_linux do
-    depends_on "linux-pam"
-    depends_on "zlib-ng-compat"
-  end
-
   resource "install-libsk-libfido2-v1.1.7.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.7.zsh"
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/10.5p1_build2/etc/install-libsk-libfido2-v1.1.7.zsh"
     sha256 "f65e110a835c61c6d5d98235dcb440fb1f447945ee341a1faf0b2284c92af5c5"
   end
 

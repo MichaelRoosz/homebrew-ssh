@@ -1,0 +1,49 @@
+name: tag cask releases
+
+# The cask url interpolates #{version}, so every cask version must have a git
+# tag of exactly that name or the download 404s. Creating it by hand is easy to
+# forget and breaks users rather than CI, so do it here instead.
+on:
+  push:
+    branches:
+      - main
+
+permissions: {}
+
+defaults:
+  run:
+    shell: bash -xeuo pipefail {0}
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Tag any cask version that has no tag yet
+        run: |
+          shopt -s nullglob
+          for cask in Casks/*.rb; do
+            version=$(sed -n 's/^[[:space:]]*version "\(.*\)"$/\1/p' "$cask" | head -1)
+            if [[ -z "$version" ]]; then
+              echo "no version stanza in $cask, skipping"
+              continue
+            fi
+
+            if git rev-parse -q --verify "refs/tags/$version" >/dev/null; then
+              echo "tag $version already exists, nothing to do"
+              continue
+            fi
+
+            # Lightweight tag on the pushed commit: no committer identity
+            # needed, and it points at the tree the cask sha256 was taken from.
+            git tag "$version" "$GITHUB_SHA"
+            git push origin "refs/tags/$version"
+            echo "created tag $version"
+          done
