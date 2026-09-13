@@ -44,6 +44,34 @@ mean two agents writing the same session variable. As a result
 `brew services start ssh-askpass` is **not** supported here; if you relied on it,
 keep using `theseal/ssh-askpass` instead.
 
+**Getting `SSH_ASKPASS` set for your session.** Because this formula no longer
+ships a launch agent, nothing points `SSH_ASKPASS` at the binary on its own.
+This tap's `com.mroosz.ssh_env_vars` agent does that — it runs
+`launchctl setenv` at login for `SSH_ASKPASS`, `SSH_ASKPASS_REQUIRE` and
+`SSH_SK_PROVIDER`, so terminals and GUI apps started afterwards inherit them.
+
+Install it with the cask:
+```bash
+brew install michaelroosz/ssh/libsk-libfido2-install
+```
+or, if you prefer the formula:
+```bash
+brew install michaelroosz/ssh/libsk-libfido2
+sudo install-libsk-libfido2
+```
+
+Check that it took effect (log out and back in first, if you just installed it):
+```bash
+launchctl getenv SSH_ASKPASS
+```
+
+If you would rather not run the agent at all, set the variables yourself in your
+shell profile instead. Note this only covers shells, not GUI applications:
+```bash
+export SSH_ASKPASS="$(brew --prefix)/bin/ssh-askpass"
+export SSH_ASKPASS_REQUIRE=force
+```
+
 **Already using `theseal/ssh-askpass`?** The binary is identical (same upstream
 tag, same tarball checksum) and the formula name matches, so both share one
 Cellar entry: an existing install already satisfies the formulae here and is not
