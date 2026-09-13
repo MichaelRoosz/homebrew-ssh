@@ -30,7 +30,7 @@ class LibskLibfido2 < Formula
   uses_from_macos "libxcrypt"
 
   resource "install-libsk-libfido2-v1.1.7.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.7.zsh"
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/10.5p1_build2/etc/install-libsk-libfido2-v1.1.7.zsh"
     sha256 "f65e110a835c61c6d5d98235dcb440fb1f447945ee341a1faf0b2284c92af5c5"
   end
 
