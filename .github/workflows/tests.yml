@@ -38,8 +38,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Tap cross-tap dependencies
-        run: brew tap theseal/ssh-askpass
+      # No explicit `brew tap theseal/ssh-askpass` here on purpose: `brew tap`
+      # passes verify: true, which readall-validates the whole tap under every
+      # OS/arch combination -- including golden_gate (macOS 27) -- and that
+      # third-party formula does not survive it. Resolving the dependency
+      # during the build auto-taps with verify: false, which is what we want.
 
       - name: Cache Homebrew Bundler RubyGems
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
