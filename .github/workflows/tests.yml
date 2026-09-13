@@ -23,7 +23,12 @@ jobs:
         # the latest two macOS versions. The -intel images are the last x86_64
         # runners Actions will offer -- they retire in August 2027, after which
         # x86_64 bottles need building elsewhere.
-        os: [macos-26, macos-26-intel, macos-15, macos-15-intel]
+        # xcode-27 is the macOS 27 image: from macOS 27 on, the runner label is
+        # `xcode-<version>` rather than `macos-<version>`. It is arm64-only and
+        # still in public preview (announced 2026-09-10), so it is the one entry
+        # here that may be flaky; fail-fast is off so it cannot take the others
+        # down with it.
+        os: [xcode-27, macos-26, macos-26-intel, macos-15, macos-15-intel]
     runs-on: ${{ matrix.os }}
     permissions:
       actions: read
@@ -50,14 +55,6 @@ jobs:
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
-
-      - name: Tap and trust the cross-tap dependency
-        if: github.event_name == 'pull_request'
-        env:
-          HOMEBREW_DEVELOPER: 1
-        run: |
-          brew tap theseal/ssh-askpass
-          brew trust --tap theseal/ssh-askpass
 
       - name: Base64-encode GITHUB_TOKEN for HOMEBREW_DOCKER_REGISTRY_TOKEN
         id: base64-encode

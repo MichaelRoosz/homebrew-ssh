@@ -20,8 +20,8 @@ class LibskLibfido2 < Formula
   # The build emits a Mach-O .dylib and the installer script uses launchctl,
   # dscl and /Library/LaunchAgents, so this is macOS-only.
   depends_on :macos
+  depends_on "michaelroosz/ssh/ssh-askpass"
   depends_on "openssl@3"
-  depends_on "theseal/ssh-askpass/ssh-askpass"
 
   uses_from_macos "mandoc" => :build
   uses_from_macos "lsof" => :test

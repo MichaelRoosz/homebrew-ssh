@@ -6,7 +6,7 @@ class SshTunnelManager < Formula
   license "GPL-2.0-or-later"
 
   depends_on "jq"
-  depends_on "theseal/ssh-askpass/ssh-askpass"
+  depends_on "michaelroosz/ssh/ssh-askpass"
   depends_on "openssh" => :optional
 
   def install

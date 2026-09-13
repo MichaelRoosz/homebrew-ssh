@@ -24,6 +24,39 @@ login session.
 brew install michaelroosz/ssh/libsk-libfido2-install
 ```
 
+### ssh-askpass
+Passphrase dialog for OpenSSH, from
+[MichaelRoosz/ssh-askpass](https://github.com/MichaelRoosz/ssh-askpass) — a fork
+of [theseal/ssh-askpass](https://github.com/theseal/ssh-askpass) (ISC licensed).
+It is packaged here so the other formulae in this tap can ship bottles: Homebrew
+refuses to bottle a formula whose dependencies are unbottled, and the original
+tap publishes none.
+
+**Installation:**
+```bash
+brew install michaelroosz/ssh/ssh-askpass
+```
+
+This formula installs **only the `ssh-askpass` binary**. The original also
+shipped a launch agent that ran `launchctl setenv SSH_ASKPASS`, which is exactly
+what this tap's own `com.mroosz.ssh_env_vars` agent does — running both would
+mean two agents writing the same session variable. As a result
+`brew services start ssh-askpass` is **not** supported here; if you relied on it,
+keep using `theseal/ssh-askpass` instead.
+
+**Already using `theseal/ssh-askpass`?** The binary is identical (same upstream
+tag, same tarball checksum) and the formula name matches, so both share one
+Cellar entry: an existing install already satisfies the formulae here and is not
+replaced.
+
+Once you are on this version you can drop the original tap, so `brew` no longer
+has two formulae with the same name:
+```bash
+brew untap theseal/ssh-askpass
+```
+Until you do, plain `brew install ssh-askpass` is ambiguous — use the fully
+qualified `michaelroosz/ssh/ssh-askpass`.
+
 ### ssh-tunnel-manager
 SSH tunnel management tool implemented with xbar for easy GUI management of SSH tunnels.
 

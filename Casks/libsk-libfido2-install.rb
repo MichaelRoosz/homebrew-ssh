@@ -9,7 +9,7 @@ cask "libsk-libfido2-install" do
 
   depends_on arch: [:intel, :arm64]
   depends_on formula: "michaelroosz/ssh/libsk-libfido2"
-  depends_on formula: "theseal/ssh-askpass/ssh-askpass"
+  depends_on formula: "michaelroosz/ssh/ssh-askpass"
 
   postflight_steps do
     run "/bin/zsh",
