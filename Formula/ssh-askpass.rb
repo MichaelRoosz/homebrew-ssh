@@ -10,6 +10,14 @@ class SshAskpass < Formula
     strategy :github_latest
   end
 
+  bottle do
+    root_url "https://ghcr.io/v2/michaelroosz/ssh"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_golden_gate: "8dc79622d8c2863f59244b1bc8f05eb1f74d43bcfd5d7229753b3577cf548761"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:       "1a1e8052df2c2c4627d0f90f68d3037c3afe2dc434284bc10312cd2285fdc660"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia:     "e4a28c005f625296f0548136be8b30ec30772d577f90f51a1dcf2746d72fe131"
+  end
+
   # Fork of theseal/ssh-askpass. Packaged here so the other formulae in this tap
   # can ship bottles: Homebrew refuses to bottle a formula whose dependencies
   # are unbottled, and the original tap publishes none.
