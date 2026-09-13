@@ -5,6 +5,11 @@ class SshAskpass < Formula
   sha256 "7497125e452e1cfe671ac05dbb4640f5d82ba6961950c0e519a00afdd8be0880"
   license "ISC"
 
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   # Fork of theseal/ssh-askpass. Packaged here so the other formulae in this tap
   # can ship bottles: Homebrew refuses to bottle a formula whose dependencies
   # are unbottled, and the original tap publishes none.
