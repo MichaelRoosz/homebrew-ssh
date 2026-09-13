@@ -12,11 +12,12 @@ Library for macOS Yubikey support for SSH with FIDO2 security keys. This enables
 brew install michaelroosz/ssh/libsk-libfido2
 ```
 
-**Post-installation:** Run the following commands to complete setup:
+**Post-installation:** Run the following command to complete setup:
 ```bash
 sudo install-libsk-libfido2
-launchctl load /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist
 ```
+This installs the library, writes the launch agent and loads it into your GUI
+login session.
 
 **Alternative:** Use the automated cask installer (recommended):
 ```bash
@@ -58,6 +59,21 @@ This cask automatically:
 - Configures environment variables
 - Sets up launch agents
 - Updates shell configuration
+
+Uninstalling the cask reverses all of it:
+```bash
+brew uninstall --cask michaelroosz/ssh/libsk-libfido2-install
+```
+
+Note that `sudo install-libsk-libfido2` (the formula route) writes the same
+system files, but `brew uninstall michaelroosz/ssh/libsk-libfido2` only removes
+the formula. To clean up afterwards, remove these by hand:
+```bash
+sudo launchctl bootout "gui/$(id -u)/com.mroosz.ssh_env_vars"
+sudo rm /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist
+sudo rm /usr/local/lib/libsk-libfido2.dylib
+```
+and delete the `SSH_SK_PROVIDER` line from your `~/.zshrc`.
 
 ## Getting Started
 

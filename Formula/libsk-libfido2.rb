@@ -5,7 +5,7 @@ class LibskLibfido2 < Formula
   mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.5p1.tar.gz"
   version "10.5p1"
   sha256 "d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11"
-  revision 1
+  revision 2
   license "SSH-OpenSSH"
   compatibility_version 1
 
@@ -31,9 +31,9 @@ class LibskLibfido2 < Formula
     depends_on "zlib-ng-compat"
   end
 
-  resource "install-libsk-libfido2-v1.1.6.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.6.zsh"
-    sha256 "dc6159e31b70007065ce8abebf33eab6ff9b76a375b7464e8d8f3cd966b04be5"
+  resource "install-libsk-libfido2-v1.1.7.zsh" do
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/main/etc/install-libsk-libfido2-v1.1.7.zsh"
+    sha256 "f65e110a835c61c6d5d98235dcb440fb1f447945ee341a1faf0b2284c92af5c5"
   end
 
   def install
@@ -68,8 +68,8 @@ class LibskLibfido2 < Formula
 
     libexec.install "libsk-libfido2.dylib"
 
-    resource("install-libsk-libfido2-v1.1.6.zsh").stage do
-      bin.install "install-libsk-libfido2-v1.1.6.zsh" => "install-libsk-libfido2"
+    resource("install-libsk-libfido2-v1.1.7.zsh").stage do
+      bin.install "install-libsk-libfido2-v1.1.7.zsh" => "install-libsk-libfido2"
     end
   end
 
@@ -77,11 +77,13 @@ class LibskLibfido2 < Formula
     <<~EOF
       !!!
 
-      IMPORTANT: To finish installation run these commands:
+      IMPORTANT: To finish installation run this command:
         sudo install-libsk-libfido2
-        launchctl load /Library/LaunchAgents/com.mroosz.ssh_env_vars.plist
 
-      OR install this homwbrew cask:
+      It installs the library, writes the launch agent and loads it into your
+      GUI login session.
+
+      OR install this homebrew cask:
         brew install michaelroosz/ssh/libsk-libfido2-install
 
       !!!
