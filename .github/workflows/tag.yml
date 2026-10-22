@@ -1,8 +1,7 @@
 name: tag cask releases
 
-# The cask url interpolates #{version}, so every cask version must have a git
-# tag of exactly that name or the download 404s. Creating it by hand is easy to
-# forget and breaks users rather than CI, so do it here instead.
+# Record cask releases with matching Git tags. Installer downloads use a
+# separate immutable installer tag and do not depend on these release markers.
 on:
   push:
     branches:

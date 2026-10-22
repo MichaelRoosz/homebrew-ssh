@@ -8,10 +8,10 @@
   increment it for packaging changes to the same version.
 - Keep dependency declarations and configure paths consistent.
 - Bump [the cask version](Casks/libsk-libfido2-install.rb) when users need to
-  rerun the installer. Its version is also its Git tag.
+  rerun the installer.
 - Verify downloaded source and installer files with `shasum -a 256`.
 
-The formula's installer resource uses a dedicated **`installer-v<version>` tag**,
+The formula and cask use a dedicated **`installer-v<version>` tag**,
 independent of OpenSSH releases. Keep it unchanged when the script is unchanged.
 For a script update, publish a new immutable installer tag before PR builds start,
 then update the versioned filename, references, and checksums together.
@@ -48,15 +48,12 @@ the new formula version/revision must be present, public, and match the bottle
 metadata on `main`. Keep old versions available. For upload permission errors,
 check the package's **Manage Actions access** for this repository.
 
-## 4. Verify the cask tag
-
-[tag.yml](.github/workflows/tag.yml) creates missing cask-version tags on pushes
-to `main`. Pushes made with `GITHUB_TOKEN` do not trigger that workflow, so
-**check the tag after publishing**. If absent, create it on published `main`
-using your own credentials. Never move an existing release tag.
+## 4. Verify the installer download
 
 Download the cask's resolved URL and verify its SHA-256 against the cask checksum.
-A GitHub Release is unnecessary; the Git tag serves the installer script.
+The dedicated installer tag must already be published; neither a matching
+cask-version tag nor a GitHub Release is required for downloading the script.
+Never move an existing installer tag.
 
 ## 5. Test the upgrade
 
