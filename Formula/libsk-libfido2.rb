@@ -1,12 +1,12 @@
 class LibskLibfido2 < Formula
   desc "Security key provider library for FIDO2 SSH authentication"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
-  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.5p1.tar.gz"
-  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.5p1.tar.gz"
-  version "10.5p1"
-  sha256 "d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11"
+  url "https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.6p1.tar.gz"
+  mirror "https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.6p1.tar.gz"
+  version "10.6p1"
+  sha256 "a9dc9565dffe8640f64d863cd29a32bc4a3dbdec0566a7fc44c5d6ee767d5f39"
   license "SSH-OpenSSH"
-  revision 3
+  revision 1
   compatibility_version 1
 
   livecheck do
@@ -14,21 +14,12 @@ class LibskLibfido2 < Formula
     regex(/href=.*?openssh[._-]v?(\d+(?:\.\d+)+(?:p\d+)?)\.t/i)
   end
 
-  bottle do
-    root_url "https://ghcr.io/v2/michaelroosz/ssh"
-    sha256 cellar: :any, arm64_golden_gate: "241d3c771e4f53fc85ae04bb24f68b18291dbb1cd5e1eb9dfdce8e5736b43c9c"
-    sha256 cellar: :any, arm64_tahoe:       "080c5c428d1da92bec829c2db92f5a09deb97f5522eb8492f58a1333159dc1b0"
-    sha256 cellar: :any, arm64_sequoia:     "82ec7285eabe637a613fcd547170784092ba5b4820dd8260dcd7191e2c537ec7"
-  end
-
   depends_on "pkgconf" => :build
   depends_on "ldns"
   depends_on "libfido2"
-  # The build emits a Mach-O .dylib and the installer script uses launchctl,
-  # dscl and /Library/LaunchAgents, so this is macOS-only.
   depends_on :macos
   depends_on "michaelroosz/ssh/ssh-askpass"
-  depends_on "openssl@3"
+  depends_on "openssl@4"
 
   uses_from_macos "mandoc" => :build
   uses_from_macos "lsof" => :test
@@ -37,7 +28,7 @@ class LibskLibfido2 < Formula
   uses_from_macos "libxcrypt"
 
   resource "install-libsk-libfido2-v1.1.7.zsh" do
-    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/10.5p1_build2/etc/install-libsk-libfido2-v1.1.7.zsh"
+    url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/installer-v1.1.7/etc/install-libsk-libfido2-v1.1.7.zsh"
     sha256 "f65e110a835c61c6d5d98235dcb440fb1f447945ee341a1faf0b2284c92af5c5"
   end
 
@@ -50,7 +41,7 @@ class LibskLibfido2 < Formula
       --with-libedit
       --with-kerberos5
       --with-pam
-      --with-ssl-dir=#{formula_opt_prefix("openssl@3")}
+      --with-ssl-dir=#{formula_opt_prefix("openssl@4")}
       --with-security-key-builtin
     ]
 
@@ -93,5 +84,29 @@ class LibskLibfido2 < Formula
 
       !!!
     EOF
+  end
+
+  test do
+    (testpath/"test.c").write <<~C
+      #include <assert.h>
+      #include <dlfcn.h>
+      #include <stddef.h>
+      #include <stdint.h>
+
+      int main(int argc, char **argv) {
+        void *provider = dlopen(argv[1], RTLD_NOW | RTLD_LOCAL);
+        assert(provider != NULL);
+        uint32_t (*api_version)(void) = dlsym(provider, "sk_api_version");
+        assert(api_version != NULL);
+        assert((api_version() & 0xffff0000) == 0x000a0000);
+        assert(dlsym(provider, "sk_enroll") != NULL);
+        assert(dlsym(provider, "sk_sign") != NULL);
+        assert(dlsym(provider, "sk_load_resident_keys") != NULL);
+        dlclose(provider);
+        return 0;
+      }
+    C
+    system ENV.cc, "test.c", "-o", "test"
+    system "./test", libexec/"libsk-libfido2.dylib"
   end
 end

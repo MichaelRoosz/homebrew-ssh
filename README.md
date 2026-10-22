@@ -2,6 +2,9 @@
 
 This Homebrew tap provides various SSH-related tools and utilities for macOS.
 
+**Maintainers:** See [Releasing an OpenSSH update](RELEASING.md) for the
+source update, bottle publishing, installer tags, and upgrade checks.
+
 ## Available Formulas
 
 ### libsk-libfido2
