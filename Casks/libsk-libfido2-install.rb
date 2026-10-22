@@ -2,7 +2,9 @@ cask "libsk-libfido2-install" do
   version "10.6p1_build1"
   sha256 "f65e110a835c61c6d5d98235dcb440fb1f447945ee341a1faf0b2284c92af5c5"
 
-  url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/installer-v1.1.7/etc/install-libsk-libfido2-v1.1.7.zsh"
+  installer_version = "1.1.7"
+
+  url "https://raw.githubusercontent.com/MichaelRoosz/homebrew-ssh/installer-v#{installer_version}/etc/install-libsk-libfido2-v#{installer_version}.zsh"
   name "libsk-libfido2-install"
   desc "Installer for FIDO2 security key support in SSH"
   homepage "https://github.com/MichaelRoosz/homebrew-ssh/"
@@ -13,7 +15,7 @@ cask "libsk-libfido2-install" do
 
   postflight_steps do
     run "/bin/zsh",
-        args: ["{{staged_path}}/install-libsk-libfido2-v1.1.7.zsh", "{{HOMEBREW_PREFIX}}"],
+        args: ["{{staged_path}}/install-libsk-libfido2-v#{installer_version}.zsh", "{{HOMEBREW_PREFIX}}"],
         sudo: true
   end
 
