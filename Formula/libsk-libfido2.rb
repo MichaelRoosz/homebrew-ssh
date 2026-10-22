@@ -14,6 +14,13 @@ class LibskLibfido2 < Formula
     regex(/href=.*?openssh[._-]v?(\d+(?:\.\d+)+(?:p\d+)?)\.t/i)
   end
 
+  bottle do
+    root_url "https://ghcr.io/v2/michaelroosz/ssh"
+    sha256 cellar: :any, arm64_golden_gate: "6d22684031c20bc0b6a59648a38613b2b809af2d7f8e47d3d7a8f3f5ecc309d5"
+    sha256 cellar: :any, arm64_tahoe:       "dd2d821f2cbfebf841ccf3ce41efc5aef162fee4a21f5697126b2294a5555f47"
+    sha256 cellar: :any, arm64_sequoia:     "2b83164b771f720248eec3687957f1df5710313032d6e589be52f1a47388d510"
+  end
+
   depends_on "pkgconf" => :build
   depends_on "ldns"
   depends_on "libfido2"
