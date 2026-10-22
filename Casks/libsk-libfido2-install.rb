@@ -15,7 +15,7 @@ cask "libsk-libfido2-install" do
 
   postflight_steps do
     run "/bin/zsh",
-        args: ["{{staged_path}}/install-libsk-libfido2-v#{installer_version}.zsh", "{{HOMEBREW_PREFIX}}"],
+        args: ["{{staged_path}}/install-libsk-libfido2-v1.1.7.zsh", "{{HOMEBREW_PREFIX}}"],
         sudo: true
   end
 
